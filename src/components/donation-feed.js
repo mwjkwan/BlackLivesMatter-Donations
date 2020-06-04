@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
+import { jsx, Styled, Text } from 'theme-ui'
 import { Component } from 'react'
 import timeAgo from '../lib/utils'
  

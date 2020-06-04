@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Image, Grid, ThemeProvider } from 'theme-ui'
+import { jsx, Grid, Image, Styled, Text, ThemeProvider } from 'theme-ui'
 import { Component } from 'react'
 import Container from './components/container'
 import DonationFeed from './components/donation-feed'
