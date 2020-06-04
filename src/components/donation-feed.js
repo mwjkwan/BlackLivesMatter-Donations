@@ -30,9 +30,8 @@ class DonationFeed extends Component {
   render() {
     const donations = this.props.donations.reverse();
     return (
-      <div id='contributions' onScroll={this.handleScroll}>
+      <div>
         <Styled.h4>CONTRIBUTIONS</Styled.h4>
-        {this.props.do}
         {donations.length === 0
           ? 'Loading donations...'
           : donations.map((item, key) =>
