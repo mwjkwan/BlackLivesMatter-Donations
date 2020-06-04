@@ -52,7 +52,7 @@ class App extends Component {
             columns={[1, '1fr 3fr']}
             padding={['2em']}
           >
-            <div sx={{ display:['none', 'inline'], maxHeight: '120vh', overflow: 'scroll'}}>
+            <div sx={{ display:['none', 'initial'], maxHeight: '120vh', overflow: 'scroll'}}>
               <DonationFeed loading={loading} donations={donations.donations || []}/>
             </div>
             <div
@@ -65,7 +65,7 @@ class App extends Component {
               <StripeWidget />
               <Letter />
             </div>
-            <div sx={{ display:['inline', 'none'] }}>
+            <div sx={{ display:['initial', 'none'] }}>
               <DonationFeed loading={loading} donations={donations.donations || []}/>
             </div>
           </Grid>
