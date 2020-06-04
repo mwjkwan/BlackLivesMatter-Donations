@@ -1,7 +1,8 @@
 /** @jsx jsx */
-import { jsx, Image, Grid, ThemeProvider, Styled } from 'theme-ui'
+import { jsx, Image, Grid, ThemeProvider } from 'theme-ui'
 import { Component } from 'react'
 import Container from './components/container'
+import DonationFeed from './components/donation-feed'
 import Infographic from './components/infographic'
 import StripeWidget from './components/stripe-widget'
 import Letter from './components/letter'
@@ -10,6 +11,7 @@ import theme from './theme/theme'
 import axios from 'axios'
 
 class App extends Component {
+
   constructor() {
     super();
     this.state = { donations: {}}
@@ -41,14 +43,14 @@ class App extends Component {
             }}
           />
         </div>
-        <Container>
+        <Container id='info'>
           <Grid
             gap={5}
             columns={[1, '1fr 3fr']}
             padding={['2em']}
           >
-            <div sx={{ paddingRight: ['0em', '3em'] }}>
-              This is where other stuff goes
+            <div sx={{ display:['none', 'inline'], maxHeight: '120vh', overflow: 'scroll'}}>
+              <DonationFeed donations={donations.donations || []}/>
             </div>
             <div
               sx={{
@@ -59,6 +61,9 @@ class App extends Component {
               <Infographic total={donations.total || 2440} count={donations.count || {}}/>
               <StripeWidget />
               <Letter />
+            </div>
+            <div sx={{ display:['inline', 'none'] }}>
+              <DonationFeed donations={donations.donations || []}/>
             </div>
           </Grid>
         </Container>
