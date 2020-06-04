@@ -6,6 +6,7 @@ const Infographic = ({loading, total, count }) => {
   return (
     <div>
       <Styled.h1 sx={{ margin: '0px' }}>
+        $
         { loading
           ? <CountUp start={0} end={1000} delay={0} />
           : <CountUp start={1000} end={total} delay={0} />
