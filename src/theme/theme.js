@@ -28,7 +28,7 @@ export default {
     32,
     48,
     64,
-    96
+    72,
   ],
   fontWeights: {
     body: 400,
@@ -46,6 +46,15 @@ export default {
     secondary: '#040404',
     muted: '#f6f6f6'
   },
+  text: {
+    infographic: {
+      fontFamily: 'body',
+      fontWeight: 'body',
+      lineHeight: 'body',
+      letterSpacing: 'boody',
+      fontSize: [3],
+    },
+  },
   styles: {
     root: {
       fontFamily: 'body',
@@ -57,21 +66,25 @@ export default {
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
-      fontSize: 5
+      fontSize: 8
     },
     h2: {
       color: 'text',
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
-      fontSize: 4
+      fontSize: 6
     },
     h3: {
       color: 'text',
       fontFamily: 'heading',
       lineHeight: 'heading',
       fontWeight: 'heading',
-      fontSize: 3
+      fontSize: 3,
+      margin: 1,
+      primary: {
+        color: 'primary',
+      }
     },
     h4: {
       color: 'text',
@@ -101,7 +114,12 @@ export default {
       lineHeight: 'body'
     },
     a: {
-      color: 'primary'
+      color: 'primary',
+      fontWeight: 'heading',
+      textDecoration: 'none',
+      hover: {
+        textDecoration: 'underline',
+      }
     },
     pre: {
       fontFamily: 'monospace',
