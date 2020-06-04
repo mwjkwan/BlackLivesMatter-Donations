@@ -1,11 +1,12 @@
 /** @jsx jsx */
 import { jsx, Styled, Text } from 'theme-ui'
+import CountUp from 'react-countup';
 
 const Infographic = ({ total, count }) => {
   return (
     <div>
       <Styled.h1 sx={{ margin: '0px' }}>
-        ${total}
+        $<CountUp start={0} end={total} delay={0} />
       </Styled.h1>
       <Styled.p sx={{ marginTop: '0.25em', fontSize: 3 }}>
         {'donated to '}
