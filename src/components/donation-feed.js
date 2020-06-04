@@ -29,15 +29,15 @@ class DonationFeed extends Component {
  
   render() {
     const { donations, loading } = this.props;
-    const recentDonations = donations.reverse();
     return (
       <div>
         <Styled.h4>CONTRIBUTIONS</Styled.h4>
         {loading
           ? <Spinner />
-          : recentDonations.map((item, key) =>
-          this.renderDonation(item, key)
-        )}
+          : donations.map((item, key) =>
+              this.renderDonation(item, key)
+            )
+        }
       </div>
     )
   }

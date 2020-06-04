@@ -28,6 +28,10 @@ class App extends Component {
 
   render() {
     const { donations, loading } = this.state
+    const recentDonations = loading
+      ? []
+      : donations.donations.sort((a, b) => b.date - a.date);
+      
     return (
       <ThemeProvider theme={theme}>
         <div
@@ -53,7 +57,7 @@ class App extends Component {
             padding={['2em']}
           >
             <div sx={{ display:['none', 'initial'], maxHeight: '120vh', overflow: 'scroll'}}>
-              <DonationFeed loading={loading} donations={donations.donations || []}/>
+              <DonationFeed loading={loading} donations={recentDonations}/>
             </div>
             <div
               sx={{
@@ -61,12 +65,12 @@ class App extends Component {
                 borderLeft: ['none','1px solid #396C4B !important']
               }}
             >
-              <Infographic loading={loading} total={donations.total || 2440} count={donations.count || {}}/>
+              <Infographic loading={loading} total={donations.total} count={donations.count || {}}/>
               <StripeWidget />
               <Letter />
             </div>
             <div sx={{ display:['initial', 'none'] }}>
-              <DonationFeed loading={loading} donations={donations.donations || []}/>
+              <DonationFeed loading={loading} donations={recentDonations}/>
             </div>
           </Grid>
         </Container>
