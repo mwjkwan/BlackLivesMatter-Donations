@@ -14,17 +14,20 @@ class App extends Component {
 
   constructor() {
     super();
-    this.state = { donations: {}}
+    this.state = {
+      loading: true,
+      donations: {}
+    }
   }
 
   componentDidMount() {
     axios.get(`https://us-central1-harker-blm.cloudfunctions.net/api/donations`)
-      .then(json => this.setState({ donations: json.data }))
+      .then(json => this.setState({ donations: json.data, loading: false }))
       .catch(error => console.log('Error:', error));
   }
 
   render() {
-    const donations = this.state.donations
+    const { donations, loading } = this.state
     return (
       <ThemeProvider theme={theme}>
         <div
@@ -50,7 +53,7 @@ class App extends Component {
             padding={['2em']}
           >
             <div sx={{ display:['none', 'inline'], maxHeight: '120vh', overflow: 'scroll'}}>
-              <DonationFeed donations={donations.donations || []}/>
+              <DonationFeed loading={loading} donations={donations.donations || []}/>
             </div>
             <div
               sx={{
@@ -58,12 +61,12 @@ class App extends Component {
                 borderLeft: ['none','1px solid #396C4B !important']
               }}
             >
-              <Infographic total={donations.total || 2440} count={donations.count || {}}/>
+              <Infographic loading={loading} total={donations.total || 2440} count={donations.count || {}}/>
               <StripeWidget />
               <Letter />
             </div>
             <div sx={{ display:['inline', 'none'] }}>
-              <DonationFeed donations={donations.donations || []}/>
+              <DonationFeed loading={loading} donations={donations.donations || []}/>
             </div>
           </Grid>
         </Container>

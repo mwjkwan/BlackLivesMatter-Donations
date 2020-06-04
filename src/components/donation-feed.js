@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled } from 'theme-ui'
+import { jsx, Spinner, Styled } from 'theme-ui'
 import { Component } from 'react'
 import timeAgo from '../lib/utils'
  
@@ -28,13 +28,14 @@ class DonationFeed extends Component {
   }
  
   render() {
-    const donations = this.props.donations.reverse();
+    const { donations, loading } = this.props;
+    const recentDonations = donations.reverse();
     return (
       <div>
         <Styled.h4>CONTRIBUTIONS</Styled.h4>
-        {donations.length === 0
-          ? 'Loading donations...'
-          : donations.map((item, key) =>
+        {loading
+          ? <Spinner />
+          : recentDonations.map((item, key) =>
           this.renderDonation(item, key)
         )}
       </div>
