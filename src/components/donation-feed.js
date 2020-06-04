@@ -1,5 +1,5 @@
 /** @jsx jsx */
-import { jsx, Styled, Text } from 'theme-ui'
+import { jsx, Styled } from 'theme-ui'
 import { Component } from 'react'
 import timeAgo from '../lib/utils'
  
@@ -28,7 +28,7 @@ class DonationFeed extends Component {
   }
  
   render() {
-    const donations = this.props.donations;
+    const donations = this.props.donations.reverse();
     return (
       <div id='contributions' onScroll={this.handleScroll}>
         <Styled.h4>CONTRIBUTIONS</Styled.h4>
