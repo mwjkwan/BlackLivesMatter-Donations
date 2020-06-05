@@ -238,7 +238,7 @@ class StripeWidget extends Component {
                             <Radio name='affiliation' onChange={this.handleChange} value="STUDENT"/> Student
                         </Label>
                         <Label>
-                            <Radio name='affiliation' onChange={this.handleChange} value="ALUMNI"/> Alumni
+                            <Radio name='affiliation' onChange={this.handleChange} value="ALUMNI"/> Alum
                         </Label>
                         <Label>
                             <Radio name='affiliation' onChange={this.handleChange} value="FACULTY"/> Faculty

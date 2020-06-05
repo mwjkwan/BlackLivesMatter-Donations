@@ -5,17 +5,20 @@ export default function timeAgo(ts) {
 
   // more that two days
   if (seconds > 2 * 24 * 3600) {
-     return `${Math.floor(seconds/(2 * 24 * 3600))} days ago`;
+      const days = Math.floor(seconds/(24 * 3600));
+      return `${days} day${days === 1 ? '' : 's'} ago`;
   }
   // a day
   if (seconds > 24 * 3600) {
      return 'yesterday';
   }
   if (seconds > 3600) {
-     return `${Math.floor(seconds/3600)} hours ago`;
+     const hours = Math.floor(seconds/3600);
+     return `${hours} hour${hours === 1 ? '' : 's'} ago`;
   }
   if (seconds > 60) {
-     return `${Math.floor(seconds/60)} minutes ago`;
+     const minutes = Math.floor(seconds/60);
+     return `${minutes} minute${minutes === 1 ? '' : 's'} ago`;
   }
   else {
     return `just now`;
