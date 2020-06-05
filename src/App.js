@@ -61,21 +61,24 @@ class App extends Component {
                     </div>
                     <Container id='info'>
                         <Grid
-                            gap={5}
+                            gap={4}
                             columns={[1, '1fr 3fr']}
                             padding={['2em']}
+                            maxWidth={'80%'}
                         >
-                            <div sx={{display: ['none', 'initial'], maxHeight: '120vh', overflow: 'scroll'}}>
+                            <div sx={{display: ['none', 'initial'], maxHeight: '165vh', overflow: 'scroll'}}>
                                 <DonationFeed loading={loading} donations={recentDonations}/>
                             </div>
                             <div
                                 sx={{
                                     paddingLeft: ['0em', '3em'],
-                                    borderLeft: ['none', '1px solid #396C4B !important']
+                                    borderLeft: ['none', '1px solid #396C4B !important'],
+                                    maxWidth: '80vw',
                                 }}
                             >
                                 <Infographic loading={loading} total={donations.total} count={donations.count || {}}/>
                                 <Letter/>
+                                <br/><br />
                                 <Styled.h3>Join our efforts and make a change. Donate today. </Styled.h3>
                                 <hr/>
                                 <ElementsConsumer>
@@ -84,19 +87,19 @@ class App extends Component {
                                     )}
                                 </ElementsConsumer>
                                 <Styled.p
-                                    style={{
-                                        'color': '#303030',
-                                        'font-size': '10px'
-                                    }}
-                                    mt={2}
+                                  sx={{
+                                    fontSize: 0,
+                                    color: '#111111 !important',
+                                    mt: 2,
+                                  }}
                                 >
-                                    While we are directing 100% of our proceeds to charties, we are not a registered
+                                    Secure payment powered by <Styled.a href="https://stripe.com/docs/security">Stripe.</Styled.a>
+                                    <br/><br />
+                                    This fundraiser is managed by Harker alumni Aliesa Bahri '18, Gloria Guo '18, Melissa Kwan '18, and Johnny Wang '19
+                                    and is unaffiliated with The Harker School. While we are directing 100% of our proceeds to charties, we are not a registered
                                     charity with the IRS and therefore cannot provide you with an official tax receipt.
-                                    We use <Styled.a href="https://stripe.com/docs/security">Stripe</Styled.a> to
-                                    process your payment. Your payment is secure.
-                                    This website is ran by Harker alumni and we are not affiliated with The Harker
-                                    School. Please direct your questions to <Styled.a
-                                    href="mailto:HarkerBLM@gmail.com">HarkerBLM@gmail.com</Styled.a>.
+                                    If you have questions or concerns, please email us at
+                                    <Styled.a href="mailto:HarkerBLM@gmail.com"> HarkerBLM@gmail.com</Styled.a>.
                                 </Styled.p>
 
                             </div>

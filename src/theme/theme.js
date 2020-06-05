@@ -44,7 +44,7 @@ export default {
     background: '#FEFEFE',
     primary: '#396C4B',
     secondary: '#040404',
-    muted: '#f6f6f6'
+    muted: '#111111',
   },
   text: {
     infographic: {
@@ -54,6 +54,9 @@ export default {
       letterSpacing: 'boody',
       fontSize: [3],
     },
+    small: {
+      fontSize:[0],
+    }
   },
   styles: {
     root: {

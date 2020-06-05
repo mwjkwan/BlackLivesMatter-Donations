@@ -1,13 +1,16 @@
 /** @jsx jsx */
-import {Alert, Box, Button, Flex, Input, jsx, Label, Radio, Spinner} from 'theme-ui'
+import {Alert, Box, Button, Grid, Input, jsx, Label, Radio, Spinner, Text} from 'theme-ui'
 import {Component} from 'react';
 import {CardElement} from '@stripe/react-stripe-js';
 import axios from 'axios'
 
 const StripeElement = (props) => {
     return (
-        <div>
-            <Label htmlFor='username'>My name is </Label>
+        <div sx={{ textAlign: 'left' }}>
+            <Label htmlFor='username'>Name</Label>
+            <Text variant='small'>
+              All donations will be anonymous; we just want to send you a thank-you note.
+            </Text>
             <Input
                 name='name'
                 id='name'
@@ -16,7 +19,7 @@ const StripeElement = (props) => {
                 onChange={props.handleChange}
                 mb={3}
             />
-            <Label htmlFor='username'>My email is </Label>
+            <Label htmlFor='username'>Email</Label>
             <Input
                 name='email'
                 id='email'
@@ -28,7 +31,7 @@ const StripeElement = (props) => {
             <Label
                 mb={3}
             >
-                I will donate via my credit/debit card
+                Credit / Debit Card
             </Label>
             <CardElement
                 options={{
@@ -46,8 +49,8 @@ const StripeElement = (props) => {
                 }}
             />
 
-            <Button mt={3} disabled={props.disabled}>
-                Donate Now
+            <Button mt={3} textAlign={'left'} disabled={props.disabled}>
+                Donate
             </Button>
         </div>
     );
@@ -201,7 +204,7 @@ class StripeWidget extends Component {
     render() {
         return (
             <div
-                st={{
+                sx={{
                     minWidth: '100%',
                     minHeight: '175px',
                     justifyContent: 'center',
@@ -229,8 +232,8 @@ class StripeWidget extends Component {
                         placeholder='$50'
                         onChange={this.handleChange}
                     />
-                    <Label htmlFor='username'>I'm a Harker </Label>
-                    <Flex mb={3}>
+                    <Label htmlFor='username'>Harker Affiliation</Label>
+                    <Grid mb={3} columns={['1fr 1fr 1fr', '1fr 1fr 1fr 1fr 1fr']}>
                         <Label>
                             <Radio name='affiliation' onChange={this.handleChange} value="STUDENT"/> Student
                         </Label>
@@ -246,7 +249,7 @@ class StripeWidget extends Component {
                         <Label>
                             <Radio name='affiliation' onChange={this.handleChange} value="COMMUNITY"/> Friend
                         </Label>
-                    </Flex>
+                    </Grid>
 
                     <StripeElement handleChange={this.handleChange} stripe={this.props.stripe}
                                    elements={this.props.elements} disabled={this.state.disabled}/>
