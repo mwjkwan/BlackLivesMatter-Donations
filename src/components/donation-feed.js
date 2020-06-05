@@ -7,7 +7,8 @@ class DonationFeed extends Component {
 
   renderDonation({affiliation, date, amount}, key){
     const affiliationMapping = {
-      STUDENT: 'A student / alum',
+      STUDENT: 'A student',
+      ALUMNI: 'An alum',
       FACULTY: 'A faculty member',
       PARENT: 'A parent',
       COMMUNITY: 'A Harker community member'

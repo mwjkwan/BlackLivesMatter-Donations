@@ -96,7 +96,7 @@ class App extends Component {
                                     Secure payment powered by <Styled.a href="https://stripe.com/docs/security">Stripe.</Styled.a>
                                     <br/><br />
                                     This fundraiser is managed by Harker alumni Aliesa Bahri '18, Gloria Guo '18, Melissa Kwan '18, and Johnny Wang '19
-                                    and is unaffiliated with The Harker School. While we are directing 100% of our proceeds to charties, we are not a registered
+                                    and is unaffiliated with The Harker School. While we are directing 100% of our proceeds to charities, we are not a registered
                                     charity with the IRS and therefore cannot provide you with an official tax receipt.
                                     If you have questions or concerns, please email us at
                                     <Styled.a href="mailto:HarkerBLM@gmail.com"> HarkerBLM@gmail.com</Styled.a>.
