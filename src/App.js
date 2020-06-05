@@ -36,7 +36,7 @@ class App extends Component {
         const {donations, loading} = this.state
         const recentDonations = loading
             ? []
-            : donations.donations.sort((a, b) => a.date - b.date);
+            : donations.donations.sort((a, b) => b.date - a.date);
 
         return (
             // Wrap the entire webapp in Stripe element
