@@ -3,6 +3,8 @@ import {Alert, Box, Button, Grid, Input, jsx, Label, Radio, Spinner, Text} from 
 import {Component} from 'react';
 import {CardElement} from '@stripe/react-stripe-js';
 import axios from 'axios'
+import * as firebase from "firebase/app";
+import 'firebase/analytics';
 
 const StripeElement = (props) => {
     return (
@@ -74,10 +76,16 @@ class StripeWidget extends Component {
         this.setState({
             [name]: value
         });
+
+        firebase.analytics().logEvent('form_changed_' + target.name);
     }
 
     handleSubmit = async (event) => {
         event.preventDefault();
+
+        firebase.analytics().logEvent('donate_attempt', {
+            amount: this.state.amount
+        });
 
         const testmode = (!process.env.NODE_ENV || process.env.NODE_ENV === 'development');
 
@@ -90,12 +98,22 @@ class StripeWidget extends Component {
             disabled: true
         });
 
-        console.log('submit');
+        if (!this.state.amount) {
+            this.setState({
+                error: 'Please enter a donation amount. ',
+                disabled: false
+            });
+            firebase.analytics().logEvent('donate_failed_no_amount');
+            return;
+        }
 
         if (!this.state.email) {
             this.setState({
                 error: 'Please enter your email so we can send you a receipt. We won\'t spam. ',
                 disabled: false
+            });
+            firebase.analytics().logEvent('donate_failed_no_email', {
+                amount: this.state.amount
             });
             return;
         }
@@ -105,38 +123,38 @@ class StripeWidget extends Component {
                 error: 'Please enter your name. ',
                 disabled: false
             });
-            return;
-        }
-
-        if (!this.state.amount) {
-            this.setState({
-                error: 'Please enter a donation amount. ',
-                disabled: false
+            firebase.analytics().logEvent('donate_failed_no_name', {
+                amount: this.state.amount
             });
             return;
         }
+
 
         if (!this.state.affiliation) {
             // Allow fallback affiliation
             this.setState({
                 affiliation: 'COMMUNITY'
-            })
+            });
+            firebase.analytics().logEvent('donate_no_affiliation_fallback', {
+                amount: this.state.amount
+            });
         }
 
 
         const {stripe, elements} = this.props;
         if (!stripe || !elements) {
-            // Stripe.js has not yet loaded.
-            // Make sure to disable form submission until Stripe.js has loaded.
-
+            this.setState({
+                error: 'Page is still loading. Please try again. ',
+                disabled: false
+            });
+            firebase.analytics().logEvent('donate_failed_no_stripe', {
+                amount: this.state.amount
+            });
             return;
         }
 
-        console.log(elements.getElement(CardElement));
-
         const cardElement = elements.getElement(CardElement);
 
-        console.log(this.state);
         const {error, paymentMethod} = await stripe.createPaymentMethod({
             type: 'card',
             card: cardElement,
@@ -151,9 +169,10 @@ class StripeWidget extends Component {
                 error: error.message,
                 disabled: false
             });
+            firebase.analytics().logEvent('donate_failed_stripe_create_payment_method_failed', {
+                amount: this.state.amount
+            });
             return;
-        } else {
-            console.log('[PaymentMethod]', paymentMethod);
         }
 
         // Obtain payment intent
@@ -172,11 +191,12 @@ class StripeWidget extends Component {
                 error: e.data.message,
                 disabled: false
             });
+            firebase.analytics().logEvent('donate_failed_obtain_payment_intent_failed', {
+                amount: this.state.amount
+            });
             return;
         }
 
-
-        console.log(intentClientSecret);
         const {error: paymentError} = await stripe.confirmCardPayment(
             intentClientSecret,
             {
@@ -185,17 +205,22 @@ class StripeWidget extends Component {
             },
         );
         if (paymentError) {
+            firebase.analytics().logEvent('donate_failed_stripe_capture_charge_failed', {
+                amount: this.state.amount
+            });
             this.setState({
                 error: paymentError.message,
                 disabled: false
             });
-
         } else {
             this.setState({
                 error: false,
                 disabled: false,
                 success: true
-            })
+            });
+            firebase.analytics().logEvent('donate_succeed', {
+                amount: this.state.amount
+            });
         }
 
     };
