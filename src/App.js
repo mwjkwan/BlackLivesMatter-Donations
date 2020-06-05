@@ -11,6 +11,8 @@ import theme from './theme/theme'
 import axios from 'axios'
 import {Elements, ElementsConsumer} from '@stripe/react-stripe-js';
 import {loadStripe} from '@stripe/stripe-js';
+import * as firebase from "firebase/app";
+import 'firebase/analytics';
 
 const stripePromise = loadStripe(
     (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') ? 'pk_test_51Gq5wjJc2RVGxWcmaTBLLw5usbhRGbZpxFxZ0JCJ7cWDvXFGtDgpqrY3JIN58leIkXIwusTPSQ0Y98O3ruVgqhyU003Vj78K03' : "pk_live_DtVsIuGEFoLA3JGhOP1ncltc0056GzeT0g"
@@ -30,6 +32,18 @@ class App extends Component {
         axios.get(`https://us-central1-harker-blm.cloudfunctions.net/api/donations`)
             .then(json => this.setState({donations: json.data, loading: false}))
             .catch(error => console.log('Error:', error));
+
+        firebase.initializeApp({
+            apiKey: "AIzaSyC80M--JIgWxrCA2qTfYsCCPU1Ps2VAE6o",
+            authDomain: "harker-blm-fabe8.firebaseapp.com",
+            databaseURL: "https://harker-blm-fabe8.firebaseio.com",
+            projectId: "harker-blm-fabe8",
+            storageBucket: "harker-blm-fabe8.appspot.com",
+            messagingSenderId: "907256557421",
+            appId: "1:907256557421:web:adb73defb1c556c6073464",
+            measurementId: "G-KWY4RB3VDY"
+        });
+        firebase.analytics();
     }
 
     render() {
