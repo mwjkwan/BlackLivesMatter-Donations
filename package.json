@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@firebase/app": "^0.6.5",
     "@stripe/react-stripe-js": "^1.1.2",
     "@stripe/stripe-js": "^1.7.0",
     "@testing-library/jest-dom": "^4.2.4",
