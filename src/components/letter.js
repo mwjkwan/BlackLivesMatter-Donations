@@ -13,8 +13,8 @@ const Letter = () => {
         {', '}
         <Styled.a target='_blank' href='https://bailproject.org/'>The Bail Project</Styled.a>
         {', and '}
-        <Styled.a target='_blank' href='https://www.joincampaignzero.org/'>Campaign Zero.</Styled.a>
-        {' Black Lives Matter drives the cultural movement for Black justice, The Bail Project combats mass incarceration, and Campaign Zero '}
+        <Styled.a target='_blank' href='https://www.eji.org/'>Equal Justice Initiative.</Styled.a>
+        {' Black Lives Matter drives the cultural movement for Black justice, The Bail Project combats mass incarceration, and Equal Justice Initiative '}
         {'researches policy solutions to end police brutality.'}
       </Styled.p>
       <Styled.p>If you'd like to spread awareness about this fundraiser, here is the <Styled.a target='_blank' href='https://www.facebook.com/events/273772077332886'>Facebook event.</Styled.a></Styled.p>
